@@ -46,7 +46,7 @@ export default function Cart() {
     updateCart({productId, count})
   }
 
-  // Remove Item - FIXED: Track specific item being removed
+  // Remove Item
   const {mutate:removeCartItem, isPending:removeLoading} = useMutation({
     mutationFn: deleteCartItem,
     onSuccess: () => {

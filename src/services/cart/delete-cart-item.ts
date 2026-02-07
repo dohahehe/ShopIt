@@ -1,24 +1,16 @@
-'use server'
-import getAccessToken from "../access-token";
-
-export default async function deleteCartItem(productId: string) {
-    const token = await getAccessToken();
-    if(!token){
-        throw new Error('Unauthorized...')
-    }
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/${productId}`, {
-        cache: 'no-store',
+async function deleteCartItem(productId: string) {
+    const response = await fetch(`/api/cart/${productId}`, {
         method: 'DELETE',
-        headers: {
-            token: token,
-            'content-type': 'application/json'
-        }
     });
-    const payload = await response.json();
-    console.log(payload);
-    return payload;
-
+    
+    if (!response.ok) {
+        throw new Error(`Failed to delete cart item: ${response.statusText}`);
+    }
+    
+    return response.json();
 }
+
+export default deleteCartItem;
 
 // server action : when modifying data like post, put, delete
 // cant use server action with get
