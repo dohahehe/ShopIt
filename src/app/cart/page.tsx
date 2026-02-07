@@ -27,7 +27,7 @@ export default function Cart() {
     }
   })
 
-  // Update quantity - FIXED: Track specific item being updated
+  // Update quantity
   const {mutate:updateCart, isPending:updateLoading} = useMutation({
     mutationFn: updateCartItem,
     onSuccess: () => {
@@ -102,7 +102,7 @@ export default function Cart() {
           <div className="container mx-auto px-4 py-8">
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-br from-green-100 to-emerald-100 rounded-full">
                   <span className="text-sm font-medium text-green-600">Shopping Cart</span>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function Cart() {
         <div className="container mx-auto px-4 py-8">
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-3">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-br from-green-100 to-emerald-100 rounded-full">
                 <span className="text-sm font-medium text-green-600">Shopping Cart</span>
               </div>
             </div>
@@ -303,7 +303,7 @@ export default function Cart() {
                               {((product?.price || 0) * (product?.count || 0))} EGP
                             </p>
                           </div>
-                          {/* Remove Button - FIXED: Individual loading state */}
+                          {/* Remove Button */}
                           <Button
                             size="sm"
                             onClick={() => product?.product?._id && handleRemove(product?.product?._id)}
@@ -334,7 +334,7 @@ export default function Cart() {
           </div>
         </div>
 
-        {/* Right Column - Order Summary + Info Section */}
+        {/* Order Summary + Info Section */}
         <div className="space-y-6">
           {/* Order Summary */}
           <div className="w-full rounded-lg bg-white overflow-hidden shadow-md">
