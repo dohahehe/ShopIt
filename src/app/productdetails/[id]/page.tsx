@@ -155,7 +155,7 @@ export default function ProductDetails() {
                       productId={singleProduct?._id}
                     />
                     
-                    <AddToFavorites />
+                    <AddToFavorites productId={singleProduct?._id} />
                   </div>
 
                   
