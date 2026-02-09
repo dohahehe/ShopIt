@@ -12,6 +12,7 @@ import { Product } from "@/app/types/productInterface";
 import Link from "next/link";
 import Image from "next/image";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
+import AddToFavorites from "../AddToFavorites/AddToFavorites";
 
 export function ProductCard({product}: {product: Product}) {
   return (
@@ -85,15 +86,7 @@ export function ProductCard({product}: {product: Product}) {
          <p className="text-lg font-bold whitespace-nowrap text-right truncate"> EGP {product.price}</p>
          }
         <div className="flex gap-2 relative">
-         {/* add to favourite */}
-          <CardAction className="relative group flex self-center items-center justify-center font-medium">
-            <svg className="w-6 h-6 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
-            </svg>
-            <span className="z-100 absolute top-full left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              Add WishList
-            </span>
-          </CardAction>
+          <AddToFavorites productId={product._id}/>
           <AddToCartBtn productId={product._id} />
         </div>
       </CardFooter>

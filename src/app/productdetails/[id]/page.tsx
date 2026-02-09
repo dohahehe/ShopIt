@@ -1,5 +1,6 @@
 'use client'
 import AddToCartBtn from "@/app/_components/AddToCartBtn/AddToCartBtn";
+import AddToFavorites from "@/app/_components/AddToFavorites/AddToFavorites";
 import Error from "@/app/_components/Error/Error";
 import ProductsSlider from "@/app/_components/ProductsSlider/ProductsSlider";
 import { Badge } from "@/components/ui/badge"
@@ -154,14 +155,7 @@ export default function ProductDetails() {
                       productId={singleProduct?._id}
                     />
                     
-                    <button className="group relative w-12 h-12 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors flex items-center justify-center">
-                      <svg className="w-6 h-6 text-gray-400 group-hover:text-red-500 transition-colors" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
-                      </svg>
-                      <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Add to Wishlist
-                      </span>
-                    </button>
+                    <AddToFavorites />
                   </div>
 
                   

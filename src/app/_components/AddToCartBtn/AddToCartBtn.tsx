@@ -32,7 +32,7 @@ function AddToCartBtn({productId}:{productId: string}) {
         <Button
             onClick={handleAddToCart}
             disabled={isAdding}
-            className="relative flex items-center text-white bg-green-600 hover:bg-linear-to-br from-green-100 to-emerald-100 group cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-lg text-md px-3 py-2 focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed"
+            className="relative flex items-center text-white bg-green-600 hover:bg-green-50 hover:text-green-600 cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-lg text-md px-3 py-2 focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed"
         >
             {isAdding ? (
                 // Loading spinner
@@ -58,7 +58,7 @@ function AddToCartBtn({productId}:{productId: string}) {
             ) : (
                 // Plus icon
                 <svg 
-                    className="w-6 h-6 group-hover:text-green-600 transition-colors" 
+                    className="w-6 h-6" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -71,7 +71,7 @@ function AddToCartBtn({productId}:{productId: string}) {
                     />
                 </svg>
             )}
-            <span className="z-100 absolute top-full left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
                 {isAdding ? 'Adding...' : 'Add To Cart'}
             </span>
         </Button>

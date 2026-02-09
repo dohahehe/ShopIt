@@ -68,7 +68,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 ">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 gap-8">
           
           {/* Company Info */}
           <div>
@@ -79,7 +79,7 @@ export default function Footer() {
                   width={40}
                   height={40}
                   alt="FreshCart Logo"
-                  className="h-10 w-auto"
+                  className="h-6 lg:h-8 w-auto"
                   loading="eager"
                 />
               </Link>
@@ -132,7 +132,8 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="gap-6 grid grid-cols-2 md:grid-cols-4">
+
+          <div className="gap-6 grid grid-cols-2 md:grid-cols-4 mx-auto w-full text-center sm:text-left">
           {/* Shop Links */}
           <div >
             <h3 className="text-lg font-bold mb-4 text-white">Shop</h3>
@@ -202,27 +203,29 @@ export default function Footer() {
           </div>
         </div>
       </div>
-        {/* Divider */}
-        <div className="border-t border-gray-800 my-8"></div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-gray-400">
-            © 2026 FreshCart™. All Rights Reserved.
-          </div>
-          
-          <div className="flex items-center gap-6 text-sm">
-            <Link href="/sitemap" className="text-gray-400 hover:text-white transition-colors hover:underline">
-              Sitemap
-            </Link>
-            <Link href="/accessibility" className="text-gray-400 hover:text-white transition-colors hover:underline">
-              Accessibility
-            </Link>
-            <Link href="/careers" className="text-gray-400 hover:text-white transition-colors hover:underline">
-              Careers
-            </Link>
-          </div>
+      {/* Divider */}
+      <div className="border-t border-gray-800 my-8"></div>
+
+      {/* Bottom Bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="text-sm text-gray-400">
+          © 2026 FreshCart™. All Rights Reserved.
         </div>
+        
+        <div className="flex items-center gap-6 text-sm">
+          <Link href="/sitemap" className="text-gray-400 hover:text-white transition-colors hover:underline">
+            Sitemap
+          </Link>
+          <Link href="/accessibility" className="text-gray-400 hover:text-white transition-colors hover:underline">
+            Accessibility
+          </Link>
+          <Link href="/careers" className="text-gray-400 hover:text-white transition-colors hover:underline">
+            Careers
+          </Link>
+        </div>
+      </div>
+      
       </div>
     </footer>
   );

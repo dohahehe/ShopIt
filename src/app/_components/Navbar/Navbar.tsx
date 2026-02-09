@@ -9,6 +9,7 @@ import getCategories from "@/services/categories/getCategories";
 import { Category } from "@/app/types/productInterface";
 import { useQuery } from "@tanstack/react-query";
 import { CartResponse } from "@/app/types/cart-response";
+import getWishlist from "@/services/wishlist/getWishlist";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Navbar() {
   let path = usePathname();
   const { status, data: session } = useSession();  
 
+  // Get cart data
   const { data: cartData} = useQuery<CartResponse>({
     queryKey: ['get-cart'],
     queryFn: async () => {
@@ -28,6 +30,12 @@ export default function Navbar() {
     }
   })
 
+   // Get wishlist
+    const { data: wishlistData, refetch } = useQuery({
+        queryKey: ['wishlist'],
+        queryFn: getWishlist,
+    });    
+
   const {data: categories, isLoading, isError } =  useQuery<Category[]>({
     queryKey: ['get-categories'],
     queryFn: async () => {
@@ -36,7 +44,6 @@ export default function Navbar() {
     }
   });
 
-  
   function toggleNav() {
     setIsOpen(!isOpen);
   }
@@ -50,9 +57,6 @@ export default function Navbar() {
     { href: '/products', content: 'Shop' },
     { href: '/brands', content: 'Brands' },
   ];
-
-  
-  
 
   function logout() {
     signOut({
@@ -231,9 +235,9 @@ export default function Navbar() {
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
                     />
                   </svg>
-                  {wishlistCount > 0 && (
+                  {wishlistData?.count > 0 && (
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                      {wishlistCount > 9 ? '9+' : wishlistCount}
+                      {wishlistData?.count > 9 ? '9+' : wishlistData?.count}
                     </span>
                   )}
                   <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -531,9 +535,9 @@ export default function Navbar() {
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
                       />
                     </svg>
-                    {wishlistCount > 0 && (
+                    {wishlistData?.count > 0 && (
                       <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                        {wishlistCount}
+                        {wishlistData?.count > 9 ? '9+' : wishlistData?.count}
                       </span>
                     )}
                   </div>
@@ -577,7 +581,7 @@ export default function Navbar() {
             {status === 'authenticated' ? (
               <div className="space-y-4">
                 <div className="flex items-center px-4 py-3 rounded-lg bg-gray-50">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center text-white font-semibold text-lg mr-4">
+                  <div className="h-12 w-12 rounded-full bg-linear-to-r from-green-500 to-emerald-600 flex items-center justify-center text-white font-semibold text-lg mr-4">
                     {getUserInitials()}
                   </div>
                   <div>
