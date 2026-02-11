@@ -294,7 +294,7 @@ export default function WishList() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                      <div>
+                      <div className="flex flex-col items-end sm:items-start">
                         <p className="text-gray-500 text-sm mb-2">Price</p>
                         <div className="flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-gray-900">
@@ -303,7 +303,7 @@ export default function WishList() {
                         </div>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-2 justify-end mt-auto">
+                      <div className="flex gap-2 justify-end mt-auto">
                         <AddToCartBtn productId={item._id} />
                         
                         <Button

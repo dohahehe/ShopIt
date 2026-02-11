@@ -14,7 +14,6 @@ export const authOptions: NextAuthOptions = {
                 password: {}
             },
             authorize: async (credentials) => {
-                // call api
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signin`, {
                     method: 'POST',
                     body: JSON.stringify({
@@ -28,7 +27,7 @@ export const authOptions: NextAuthOptions = {
 
                 const payload : failedLogin | successLogin = await res.json()
                 console.log(payload);
-                // return object of type user, and id has to be string
+                
                 if ('token' in payload) {
                    return {
                     id: payload.user.email,
@@ -38,24 +37,30 @@ export const authOptions: NextAuthOptions = {
                 } else {
                   throw new Error('error signing in!')
                 }
-                
             }
         })
     ],
     callbacks: {
-        jwt: ({token, user}) => {
+        jwt: ({token, user, trigger, session}) => {
+            // Initial sign in
             if(user){
-                token.user= user.user
+                token.user = user.user
                 token.token = user.token
             }
+            
+            // Handle session update from client
+            if (trigger === "update" && session) {
+                token.user = {
+                    ...token.user as any,
+                    ...session.user
+                }
+            }
+            
             return token
         },
         session: ({session, token}) => {
-            session.user = token.user
+            session.user = token.user as any
             return session
         }, 
     }
 }
-
-// useSession, getSession, getServerSession
-// useSession ==> Client Component

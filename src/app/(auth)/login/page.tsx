@@ -119,7 +119,7 @@ export default function Login() {
                               Password
                             </FieldLabel>
                             <Link 
-                              href="/forgot-password" 
+                              href="/forgotpassword" 
                               className="text-sm text-green-600 hover:text-green-700 hover:underline"
                             >
                               Forgot password?
