@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET
     });
 
-    console.log("Token received:", token ? "Yes" : "No");
+    // console.log("Token received:", token ? "Yes" : "No");
 
     if (!token) {
       return NextResponse.json(
@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 
     const routeMisrToken = (token as any).routeMisrToken || token.token;
     
-    console.log("RouteMisr token exists:", !!routeMisrToken);
+    // console.log("RouteMisr token exists:", !!routeMisrToken);
 
     if (!routeMisrToken) {
       return NextResponse.json(
@@ -57,8 +57,8 @@ export async function GET(req: NextRequest) {
 
     const userId = decodedToken.id;
     
-    console.log("Decoded JWT:", decodedToken);
-    console.log("User ID from decoded token:", userId);
+    // console.log("Decoded JWT:", decodedToken);
+    // console.log("User ID from decoded token:", userId);
 
     if (!userId) {
       return NextResponse.json(

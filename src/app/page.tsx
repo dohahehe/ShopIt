@@ -26,7 +26,10 @@ export default function Home() {
   // Get Products
   const { data: allProducts, isLoading, isError, error } = useQuery<Product[]>({
     queryKey: ['get-products'],
-    queryFn: getProducts,
+    queryFn: async () => {
+    const products = await getProducts();
+    return products;
+  },
     refetchOnMount: 'always',
   });
 
@@ -127,7 +130,7 @@ export default function Home() {
             <div
               key={slide.id}
               className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
+                index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             >
               {/* Background Image with Overlay */}

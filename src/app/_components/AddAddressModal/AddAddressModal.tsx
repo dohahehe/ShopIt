@@ -25,13 +25,13 @@ type AddAddressForm = z.infer<typeof addAddressSchema>
 interface AddAddressModalProps {
   isOpen: boolean
   onClose: () => void
-  onSuccess: () => void  // Keep as onSuccess to match usage
+  onSuccess: () => void  
 }
 
 export default function AddAddressModal({ 
   isOpen, 
   onClose, 
-  onSuccess  // Keep as onSuccess
+  onSuccess  
 }: AddAddressModalProps) {
   const [showPhone, setShowPhone] = useState(false)
   const queryClient = useQueryClient()
@@ -48,7 +48,7 @@ export default function AddAddressModal({
 
   const mutation = useMutation({
   mutationFn: (data: AddAddressForm) => {
-    console.log("Submitting address data:", data); // Debug log
+    console.log("Submitting address data:", data); 
     return addressService.addAddress(
       data.name, 
       data.details, 

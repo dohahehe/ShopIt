@@ -40,12 +40,17 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60, 
+    },
     callbacks: {
         jwt: ({token, user, trigger, session}) => {
             // Initial sign in
             if(user){
                 token.user = user.user
                 token.token = user.token
+                // console.log("JWT callback - token set:", !!token.token);
             }
             
             // Handle session update from client
@@ -59,8 +64,11 @@ export const authOptions: NextAuthOptions = {
             return token
         },
         session: ({session, token}) => {
+            // console.log("Session callback - token from JWT:", !!token.token); 
             session.user = token.user as any
+            session.token = token.token as string
             return session
         }, 
+        
     }
 }

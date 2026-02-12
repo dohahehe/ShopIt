@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from 'next/image';
 import Logo from '../../../../public/freshcart-logo.49f1b44d.svg'
@@ -19,6 +19,7 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   let path = usePathname();
   const { status, data: session } = useSession();  
+  const router = useRouter()
 
   // Get cart data
   const { data: cartData} = useQuery<CartResponse>({
@@ -64,13 +65,6 @@ export default function Navbar() {
     });
   }
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log("Searching for:", searchQuery);
-    }
-  };
-
   const getUserInitials = () => {
     if (!session?.user?.name) return 'U';
     return session.user.name
@@ -80,6 +74,15 @@ export default function Navbar() {
       .toUpperCase()
       .slice(0, 2);
   };
+
+  const handleSearch = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (searchQuery.trim()) {
+    router.push(`/products?keyword=${encodeURIComponent(searchQuery.trim())}`);
+    setSearchQuery(''); 
+    setIsOpen(false); 
+  }
+};
 
   return (
     <nav className="bg-white border-b border-gray-200 w-full z-20 sticky top-0">

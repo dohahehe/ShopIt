@@ -5,11 +5,15 @@ import { Product } from "../types/productInterface";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/Loader/Loader";
 import ErrorComponent from "../_components/Error/Error";
+import { useSearchParams } from "next/navigation";
 
 export default function Products() {
-   const {data: allProducts, isLoading, isError, error} = useQuery<Product[]>({
-    queryKey: ['get-products'],
-    queryFn: getProducts
+  const searchParams = useSearchParams()
+  const keyword = searchParams.get('keyword') || ''
+
+  const {data: allProducts, isLoading, isError, error} = useQuery<Product[]>({
+    queryKey: ['get-products', keyword], 
+    queryFn: () => getProducts(keyword)  
   })
 
   if(isLoading) return <Loader />
@@ -37,10 +41,10 @@ export default function Products() {
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                   />
                 </svg>
-                <span className="text-sm font-medium text-green-600">Featured Products</span>
+                <span className="text-sm font-medium text-green-600">{keyword ? keyword : 'Featured' } Products</span>
                 </div>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">All Products</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">All {keyword? keyword : ''} Products</h1>
               <p className="text-gray-600 max-w-2xl">
                 Explore our curated selection of products
               </p>
