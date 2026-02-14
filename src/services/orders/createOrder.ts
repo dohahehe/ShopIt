@@ -1,19 +1,4 @@
-export interface ShippingAddress {
-    details: string;
-    phone: string;
-    city: string;
-}
-
-export interface CreateCashOrderParams {
-    cartId: string;
-    shippingAddress: ShippingAddress;
-}
-
-export interface CreateCheckoutSessionParams {
-    cartId: string;
-    shippingAddress: ShippingAddress;
-    returnUrl?: string; 
-}
+import { CreateCashOrderParams, CreateCheckoutSessionParams } from "@/app/types/orders";
 
 // cash order
 export async function createCashOrder({ 

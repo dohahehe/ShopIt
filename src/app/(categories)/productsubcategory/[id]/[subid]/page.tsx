@@ -96,7 +96,7 @@ function ProductSubcategory() {
                     </svg>
                   </div>
                   <p className="text-gray-600">
-                    Check back in a few days or subscribe to get notified when new products arrive
+                    Check back in a few days
                   </p>
                 </div>
               </div>

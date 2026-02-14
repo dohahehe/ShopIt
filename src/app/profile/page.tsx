@@ -7,7 +7,6 @@ import Loader from "@/Loader/Loader"
 import Link from "next/link"
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { OrdersResponse } from '../order-confirmation/allorders/page'
 import ErrorComponent from '../_components/Error/Error'
 import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
@@ -17,21 +16,8 @@ import { Input } from '@/components/ui/input'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { addressService } from '@/services/addresses/addressService'
 import getOrders from '@/services/orders/getOrders'
-
-interface Address {
-  _id: string;
-  name: string;
-  details: string;
-  city: string;
-  phone: string;
-  isDefault?: boolean;
-}
-
-interface AddressesResponse {
-  status: string;
-  message: string;
-  data: Address[];
-}
+import { OrdersResponse } from '../types/orders'
+import { AddressesResponse } from '../types/addresses'
 
 // schemas
 const addAddressSchema = z.object({
@@ -290,8 +276,8 @@ export default function Profile() {
   const addresses = addressesData?.data || []
   const defaultAddress = addresses.find(a => a.isDefault) || addresses[0]
   const orders = Array.isArray(ordersData) ? ordersData : ordersData?.data || []
-  const completedOrders = orders.filter(order => order.isPaid && order.isDelivered)
-  const pendingOrders = orders.filter(order => !order.isPaid || !order.isDelivered)
+  const completedOrders = orders.filter(order => order.isDelivered)
+  const pendingOrders = orders.filter(order => !order.isDelivered)  
 
   if (ordersLoading || addressesLoading) return <Loader />
   if (ordersError) return <ErrorComponent message={ordersErrorData.message} showContactButton={false} />

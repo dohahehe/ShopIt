@@ -3,7 +3,6 @@ import { getToken } from "next-auth/jwt";
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("=== ADD ADDRESS API CALLED ===");
     
     const token = await getToken({ req });
 
@@ -15,11 +14,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("Token found for user:", token.email);
+    // console.log("Token found for user:", token.email);
 
-    // Get raw request text first to debug
     const rawBody = await req.text();
-    console.log("Raw request body:", rawBody);
     
     if (!rawBody) {
       console.log("Empty request body");
@@ -29,11 +26,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Parse JSON
     let body;
     try {
       body = JSON.parse(rawBody);
-      console.log("Parsed body:", body);
     } catch (e) {
       console.error("Failed to parse JSON:", e);
       return NextResponse.json(
@@ -44,18 +39,13 @@ export async function POST(req: NextRequest) {
 
     const { name, details, phone, city } = body;
 
-    // Validate required fields
     if (!name || !details || !phone || !city) {
-      console.log("Missing fields:", { name, details, phone, city });
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
       );
     }
-
-    console.log("Calling external API:", `${process.env.NEXT_PUBLIC_API_URL}/addresses`);
     
-    // Call external API
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/addresses`, {
       method: "POST",
       headers: {
@@ -70,13 +60,9 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    console.log("External API response status:", response.status);
 
-    // Get the response text
     const text = await response.text();
-    console.log("External API response body:", text);
 
-    // If response is empty but successful
     if (!text) {
       if (response.ok) {
         return NextResponse.json({
@@ -91,7 +77,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Try to parse JSON
     try {
       const payload = JSON.parse(text);
       
@@ -104,7 +89,6 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json(payload);
     } catch (e) {
-      // If response is OK but not JSON, return success with our own data
       if (response.ok) {
         return NextResponse.json({
           status: "success",

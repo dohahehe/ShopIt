@@ -12,5 +12,4 @@ async function emptyCart() {
 
 export default emptyCart;
 
-// server action : when modifying data like post, put, delete
-// cant use server action with get
+

@@ -19,7 +19,8 @@ export default function Products() {
   if(isLoading) return <Loader />
 
   if (isError) return <ErrorComponent message={error.message} showContactButton={false} />
-    
+
+
     return (
       <div className="w-full">
         {/* Header */}
@@ -60,6 +61,52 @@ export default function Products() {
             </div>
           </div>
         </div>
+
+        {allProducts?.length === 0 && (
+          <div className="container mx-auto px-4 py-4 my-auto">
+              <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/3">
+                    <div className="w-24 h-24 mx-auto bg-linear-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
+                      <svg className="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+            
+                  <div className="md:w-2/3">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                      Products Coming Soon
+                    </h2>
+              
+                  <div className="space-y-4 ">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-1">
+                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-600">
+                        We're actively adding new products to our collection
+                      </p>
+                    </div>
+                
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-1">
+                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-600">
+                        Check back in a few days 
+                      </p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        )}
 
         {/* Products */}
         <div className="mx-auto container px-4 py-6 gap-5 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

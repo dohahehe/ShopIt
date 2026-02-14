@@ -1,23 +1,4 @@
-interface Address {
-  _id: string;
-  name: string;
-  details: string;
-  phone: string;
-  city: string;
-  isDefault?: boolean;
-}
-
-interface AddressesResponse {
-  status: string;
-  message: string;
-  data: Address[];
-}
-
-interface AddAddressResponse {
-  status: string;
-  message: string;
-  data: Address;
-}
+import { AddAddressResponse, AddressesResponse } from "@/app/types/addresses";
 
 export const addressService = {
   // Get all addresses
@@ -29,7 +10,6 @@ export const addressService = {
       },
     });
 
-    // Handle empty response
     const text = await response.text();
     
     if (!text) {

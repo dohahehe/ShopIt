@@ -15,7 +15,6 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { name, email, phone } = body;
 
-    // Call external API
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/updateMe/`, {
       method: "PUT",
       headers: {

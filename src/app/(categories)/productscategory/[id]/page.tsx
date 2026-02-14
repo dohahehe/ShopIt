@@ -168,81 +168,81 @@ function CategoryProductsPage() {
             
             {/* Category Info Section */}
             <div className="bg-linear-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 text-white">
-  <div className="max-w-3xl">
-    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <span className="text-sm font-medium">About {category?.name}</span>
-    </div>
-    
-    <h3 className="text-2xl md:text-3xl font-bold mb-6">
-      Premium {category?.name} Experience
-    </h3>
-    
-    <div className="grid md:grid-cols-2 gap-8">
-      <div className="space-y-4">
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-1">Quality Guarantee</h4>
-            <p className="text-gray-300">
-              Every {category?.name?.toLowerCase()} product is carefully curated and quality checked by our experts.
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-1">Fast Delivery</h4>
-            <p className="text-gray-300">
-              Free shipping on orders over 500 EGP. 1-3 business days delivery.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="space-y-4">
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-1">Secure Shopping</h4>
-            <p className="text-gray-300">
-              Your payments are protected with 256-bit SSL encryption.
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-1">Easy Returns</h4>
-            <p className="text-gray-300">
-              30-day return policy. No questions asked returns.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm font-medium">About {category?.name}</span>
+                </div>
+                
+                <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                  Premium {category?.name} Experience
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-1">Quality Guarantee</h4>
+                        <p className="text-gray-300">
+                          Every {category?.name?.toLowerCase()} product is carefully curated and quality checked by our experts.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-1">Fast Delivery</h4>
+                        <p className="text-gray-300">
+                          Free shipping on orders over 500 EGP. 1-3 business days delivery.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-1">Secure Shopping</h4>
+                        <p className="text-gray-300">
+                          Your payments are protected with 256-bit SSL encryption.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-1">Easy Returns</h4>
+                        <p className="text-gray-300">
+                          30-day return policy. No questions asked returns.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </>
         )}
       </div>

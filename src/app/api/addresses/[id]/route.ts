@@ -18,8 +18,8 @@ export async function DELETE(
     const { id } = await params;
     const addressId = id;
 
-    console.log("Deleting address:", addressId);
-    console.log("User:", token.email);
+    // console.log("Deleting address:", addressId);
+    // console.log("User:", token.email);
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/addresses/${addressId}`, {
       method: "DELETE",

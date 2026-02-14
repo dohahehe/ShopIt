@@ -1,31 +1,14 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-
-function decodeJWT(token: string): any {
-  try {
-    const tokenParts = token.split('.');
-    if (tokenParts.length !== 3) {
-      return null;
-    }
-    
-    const payloadBase64 = tokenParts[1];
-    const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
-    return JSON.parse(payloadJson);
-  } catch (error) {
-    console.error("Error decoding JWT:", error);
-    return null;
-  }
-}
+import { jwtDecode } from "jwt-decode";
+import { DecodedToken } from "@/app/types/authInterface";
 
 export async function GET(req: NextRequest) {
-
   try {
     const token = await getToken({ 
       req,
       secret: process.env.NEXTAUTH_SECRET
     });
-
-    // console.log("Token received:", token ? "Yes" : "No");
 
     if (!token) {
       return NextResponse.json(
@@ -34,31 +17,31 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const routeMisrToken = (token as any).routeMisrToken || token.token;
+    // The token from your external API is stored in token.token
+    const apiToken = token.token;
     
-    // console.log("RouteMisr token exists:", !!routeMisrToken);
-
-    if (!routeMisrToken) {
+    if (!apiToken) {
       return NextResponse.json(
         { error: "Authentication token missing. Please login again." },
         { status: 401 }
       );
     }
 
-    // DECODE the RouteMisr JWT token to extract user ID
-    const decodedToken = decodeJWT(routeMisrToken);
-    
-    if (!decodedToken) {
+    // Decode the token to get user ID
+    let decodedToken: DecodedToken;
+    try {
+      decodedToken = jwtDecode<DecodedToken>(apiToken);
+    } catch (error) {
+      console.error("Error decoding JWT:", error);
       return NextResponse.json(
         { error: "Invalid authentication token" },
         { status: 401 }
       );
     }
-
-    const userId = decodedToken.id;
     
     // console.log("Decoded JWT:", decodedToken);
-    // console.log("User ID from decoded token:", userId);
+
+    const userId = decodedToken.id;
 
     if (!userId) {
       return NextResponse.json(
@@ -67,19 +50,18 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    
+    // Fetch orders using the user ID from the decoded token
     const response = await fetch(
-      `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/orders/user/${userId}`,
       {
         headers: {
           'Content-Type': 'application/json',
-          'token': routeMisrToken,
+          'token': apiToken,
         },
         cache: 'no-store'
       }
     );
 
-    
     if (!response.ok) {
       let errorDetails = "";
       try {
@@ -102,7 +84,6 @@ export async function GET(req: NextRequest) {
     }
 
     const ordersData = await response.json();
-
     return NextResponse.json(ordersData);
 
   } catch (error: any) {

@@ -28,3 +28,11 @@ declare module 'next-auth' {
     token: string;
   }
 }
+
+export interface DecodedToken {
+  id: string;
+  name: string;
+  role: string;
+  iat: number;
+  exp: number;
+}

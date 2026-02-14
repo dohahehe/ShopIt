@@ -19,16 +19,6 @@ interface UpdateProfileResponse {
 }
 
 export const userService = {
-  /**
-   * CHANGE PASSWORD - For logged in users
-   * Endpoint: PUT /api/auth/change-password
-   * Headers: token (automatically added from next-auth)
-   * Body: { 
-   *   currentPassword: string,
-   *   password: string, 
-   *   rePassword: string 
-   * }
-   */
   changePassword: async (
     currentPassword: string,
     password: string,
@@ -55,16 +45,11 @@ export const userService = {
     return data;
   },
 
-  /**
-   * UPDATE PROFILE - Update logged user data
-   * Endpoint: PUT /api/user/update
-   * Headers: token (automatically added from next-auth)
-   * Body: { name, email, phone }
-   */
-      updateProfile: async (userData: {
+  
+  updateProfile: async (userData: {
     name: string;
     email: string;
-    phone: string; // phone is required string, even if empty
+    phone: string; 
   }): Promise<UpdateProfileResponse> => {
     const response = await fetch("/api/user/update", {
       method: "PUT",
@@ -74,7 +59,7 @@ export const userService = {
       body: JSON.stringify({
         name: userData.name,
         email: userData.email,
-        phone: userData.phone, // Always send phone, never omit
+        phone: userData.phone, 
       }),
     });
 

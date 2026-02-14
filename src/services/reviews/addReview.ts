@@ -1,18 +1,4 @@
-interface AddReviewResponse {
-  status: string;
-  message: string;
-  data: {
-    _id: string;
-    review: string;
-    rating: number;
-    product: string;
-    user: {
-      _id: string;
-      name: string;
-    };
-    createdAt: string;
-  };
-}
+import { AddReviewResponse } from "@/app/types/reviews";
 
 export default async function addReview(
   productId: string,
@@ -28,7 +14,7 @@ export default async function addReview(
     },
     body: JSON.stringify({ 
       review, 
-      rating: Number(rating) // Ensure number
+      rating: Number(rating)
     }),
   });
 

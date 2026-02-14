@@ -40,8 +40,7 @@ export default function AddReviewModal({ isOpen, onClose, productId, onSuccess }
 
   const mutation = useMutation({
     mutationFn: (data: ReviewForm) => {
-        console.log("Submitting review:", data); // Debug log
-        return addReview(productId, data.review, Number(data.rating)); // Ensure number
+        return addReview(productId, data.review, Number(data.rating)); 
     },
     onSuccess: () => {
         toast.success('Review added successfully!')

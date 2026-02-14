@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import AddToCartBtn from "@/app/_components/AddToCartBtn/AddToCartBtn";
 import AddToFavorites from "@/app/_components/AddToFavorites/AddToFavorites";
 import ErrorComponent from "@/app/_components/Error/Error";
@@ -18,6 +18,8 @@ import { useParams } from "next/navigation";
 import toast from 'react-hot-toast';
 import deleteReview from '@/services/reviews/deleteReview';
 import EditReviewModal from './EditReviewModal';
+import { jwtDecode } from 'jwt-decode';
+import { DecodedToken } from '@/app/types/authInterface';
 
 export default function ProductDetails() {
   const { data: session } = useSession()
@@ -67,30 +69,34 @@ export default function ProductDetails() {
       deleteMutation.mutate(reviewId);
   };
 
-  const decodeJWT = (token: string): any => {
-    try {
-      const tokenParts = token.split('.');
-      if (tokenParts.length !== 3) {
-        return null;
-      }
+  // const decodeJWT = (token: string): any => {
+  //   try {
+  //     const tokenParts = token.split('.');
+  //     if (tokenParts.length !== 3) {
+  //       return null;
+  //     }
       
-      const payloadBase64 = tokenParts[1];
-      const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
-      return JSON.parse(payloadJson);
+  //     const payloadBase64 = tokenParts[1];
+  //     const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+  //     return JSON.parse(payloadJson);
+  //   } catch (error) {
+  //     console.error("Error decoding JWT:", error);
+  //     return null;
+  //   }
+  // };
+
+  const userId = useMemo(() => {
+    const token = (session as any)?.token;
+    if (!token) return null;
+    
+    try {
+      const decoded = jwtDecode<DecodedToken>(token);
+      return decoded.id;
     } catch (error) {
-      console.error("Error decoding JWT:", error);
+      console.error("Error decoding token:", error);
       return null;
     }
-  };
-
-  const routeMisrToken = (session as any)?.token;
-  let userId = null;
-
-  if (routeMisrToken) {
-    const decodedToken = decodeJWT(routeMisrToken);
-    userId = decodedToken?.id;
-    console.log("Decoded user ID from token:", userId);
-  }
+  }, [session]);
 
   if(productLoading) return <Loader />
   if(isError) return <ErrorComponent message={error.message} showContactButton={false} />
